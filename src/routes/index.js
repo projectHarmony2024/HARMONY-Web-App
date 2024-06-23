@@ -2,6 +2,7 @@
 
 import { lazy } from 'react'
 
+
 const Dashboard = lazy(() => import('../pages/protected/Dashboard'))
 const Welcome = lazy(() => import('../pages/protected/Welcome'))
 const Page404 = lazy(() => import('../pages/protected/404'))
@@ -17,9 +18,19 @@ const ProfileSettings = lazy(() => import('../pages/protected/ProfileSettings'))
 const GettingStarted = lazy(() => import('../pages/GettingStarted'))
 const DocFeatures = lazy(() => import('../pages/DocFeatures'))
 const DocComponents = lazy(() => import('../pages/DocComponents'))
+const WindPage = lazy(() => import('../pages/protected/WindPage'))
+const SolarWindPage = lazy(() => import('../pages/protected/SolarWind'))
 
 
 const routes = [
+  {
+    path: '/solarwindpage', // the url
+    component: SolarWindPage, // view rendered
+  },
+  {
+    path: '/windpage', // the url
+    component: WindPage, // view rendered
+  },
   {
     path: '/dashboard', // the url
     component: Dashboard, // view rendered

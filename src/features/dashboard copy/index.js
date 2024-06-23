@@ -15,23 +15,35 @@ import SunIcon from '@heroicons/react/24/solid/SunIcon';
 
 const Dashboard = () => {
     const [statsData, setStatsData] = useState([
-        { title: "Solar Voltage (V)", value: "0", description: "" },
-        { title: "Solar Current (A)", value: "0", description: "" },
-        { title: "Solar Power (W)", value: "0", description: "" },
+        { title: "Wind Voltage (V)", value: "0", description: "" },
+        { title: "Wind Current (A)", value: "0", description: "" },
+        { title: "Wind Power (W)", value: "0", description: "" },
+        { title: "Wind Speed (kph)", value: "0", description: "" },
+        { title: "Wind Direction (°)", value: "0", description: "" },
     ]);
 
     const dispatch = useDispatch();
 
+    // Utility function to determine cardinal direction
+    const getWindDirection = (degrees) => {
+        const directions = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+        const index = Math.round(degrees / 45) % 8;
+        return directions[index];
+    };
+
     useEffect(() => {
         const fetchData = () => {
-            const SolarRef = ref(database, 'Solar');
-            onValue(SolarRef, (snapshot) => {
+            const WindRef = ref(database, 'Wind');
+            onValue(WindRef, (snapshot) => {
                 const data = snapshot.val();
                 if (data) {
+                    const windDirection = getWindDirection(data.WindDirection);
                     setStatsData([
-                        { title: "Solar Voltage (V)", value: `${data.Voltage}`, description: "" },
-                        { title: "Solar Current (A)", value: `${data.Current}`, description: "" },
-                        { title: "Solar Power (W)", value: `${data.Power}`, description: "" },
+                        { title: "Wind Voltage (V)", value: `${data.Voltage}`, description: "" },
+                        { title: "Wind Current (A)", value: `${data.Current}`, description: "" },
+                        { title: "Wind Power (W)", value: `${data.Power}`, description: "" },
+                        { title: "Wind Speed (kph)", value: `${data.WindSpeed}`, description: "" },
+                        { title: "Wind Direction (°)", value: `${data.WindDirection}° ${windDirection}`, description: "" },
                     ]);
                 }
             });
@@ -41,7 +53,7 @@ const Dashboard = () => {
 
         return () => {
             // Clean up listener
-            ref(database, 'Solar').off();
+            ref(database, 'Wind').off();
         };
     }, []);
 
@@ -59,7 +71,7 @@ const Dashboard = () => {
             </div>
             <div className="grid lg:grid-cols-2 mt-4 grid-cols-1 gap-6">
                 <VoltageCurrentLineChart />
-                <PowerLineChart/>
+                <PowerLineChart />
                 {/* <BarChart /> */}
             </div>
             {/* <div className="grid lg:grid-cols-2 mt-10 grid-cols-1 gap-6">

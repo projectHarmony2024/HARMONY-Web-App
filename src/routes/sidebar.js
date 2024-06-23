@@ -27,7 +27,17 @@ const routes = [
   {
     path: '/app/dashboard',
     icon: <Squares2X2Icon className={iconClasses}/>, 
-    name: 'Dashboard',
+    name: 'Solar Page',
+  },
+  {
+    path: '/app/windpage',
+    icon: <Squares2X2Icon className={iconClasses}/>, 
+    name: 'Wind Page',
+  },
+  {
+    path: '/app/solarwindpage',
+    icon: <Squares2X2Icon className={iconClasses}/>, 
+    name: 'Solar and Wind Page',
   },
   // {
   //   path: '/app/leads', // url
@@ -39,11 +49,11 @@ const routes = [
   //   icon: <CurrencyDollarIcon className={iconClasses}/>, // icon component
   //   name: 'Transactions', // name that appear in Sidebar
   // },
-  {
-    path: '/app/charts', // url
-    icon: <ChartBarIcon className={iconClasses}/>, // icon component
-    name: 'Analytics', // name that appear in Sidebar
-  },
+  // {
+  //   path: '/app/charts', // url
+  //   icon: <ChartBarIcon className={iconClasses}/>, // icon component
+  //   name: 'Solar and Wind', // name that appear in Sidebar
+  // },
   // {
   //   path: '/app/integration', // url
   //   icon: <BoltIcon className={iconClasses}/>, // icon component
